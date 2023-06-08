@@ -1,10 +1,10 @@
 #include "NewEncoder.h"
 
-NewEncoder encoder(8, 9, 20, 13);;
+NewEncoder encoder;
 
 void setup()
 {
-    // encoder.setup(8, 9, 20, 13);
+    encoder.begin(8, 9, 20, 13);
     Serial.begin(9600);
 }
 unsigned long delayTime = 0;

@@ -25,8 +25,6 @@ private:
     Direction DIRECTION;
 
 public:
-    NewEncoder::NewEncoder(uint8_t outA, uint8_t outB, int resolution, uint8_t button);
-
     void begin(uint8_t outA, uint8_t outB, int resolution, uint8_t button);
     void begin(uint8_t outA, uint8_t outB, int resolution);
     void begin(uint8_t outA, uint8_t outB);
@@ -44,10 +42,6 @@ public:
     float Radians();
     float Degrees();
 };
-NewEncoder::NewEncoder(uint8_t outA, uint8_t outB, int resolution = 20, uint8_t button = 0)
-{
-    begin(autA, outB, resolution, button);
-}
 
 // Constructor with optional parameters 'resolution' (default 20) and 'button'
 void NewEncoder::begin(uint8_t outA, uint8_t outB, int resolution, uint8_t button)

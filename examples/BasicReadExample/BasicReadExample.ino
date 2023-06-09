@@ -1,12 +1,25 @@
+/**
+ * @file BasicReadExample.ino
+ * @author Alex Casal (https://github.com/alexitoo00)
+ * @brief A basic example to obtain all possible properties of a rotary encoder
+ * @version 1.0
+ * @date 2023-06-08
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
+
 #include "NewEncoder.h"
 
-NewEncoder encoder;
+NewEncoder encoder; // Create an instance of the class NewEncoder
 
 void setup()
 {
-    encoder.begin(8, 9, 20, 13);
+    // pin A or CLOCK, pin B or DATA, number of steps per turn and pin of SWITCH button
+    encoder.begin(8, 9, 13, 20);
     Serial.begin(9600);
 }
+
 unsigned long delayTime = 0;
 void loop()
 {
@@ -16,6 +29,11 @@ void loop()
         return;
     delayTime = millis();
 
+    PrintData();
+}
+
+void PrintData()
+{
     Serial.print("Button: \t-\t");
     Serial.println(encoder.ButtonPressed() ? "true" : "false");
 
@@ -23,18 +41,7 @@ void loop()
     Serial.println(encoder.GetSteps());
 
     Serial.print("Direction: \t-\t");
-    switch (encoder.GetDirection())
-    {
-    case 0:
-        Serial.println("None");
-        break;
-    case 1:
-        Serial.println("Clockwise");
-        break;
-    case 2:
-        Serial.println("Counterclockwise");
-        break;
-    }
+    Serial.println(encoder.GetDirectionName());
 
     Serial.print("Percentage: \t-\t");
     Serial.println(encoder.Percentage(), 16);
@@ -46,7 +53,8 @@ void loop()
     Serial.println(encoder.Radians(), 16);
 
     Serial.print("Degrees: \t-\t");
-    Serial.println(encoder.Degrees(), 16);
+    Serial.print(encoder.Degrees(), 16);
+    Serial.println("º");
 
     Serial.println();
 }

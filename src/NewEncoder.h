@@ -6,10 +6,10 @@ private:
     // Pin out
     uint8_t _outA;
     uint8_t _outB;
-    uint8_t _button;
+    uint8_t _button = 0;
 
     // Variables
-    int maxResolution = 20;
+    int maxResolution = 30;
     int steps = 0;
 
     // States
@@ -25,8 +25,8 @@ private:
     Direction DIRECTION;
 
 public:
-    void begin(uint8_t outA, uint8_t outB, int resolution, uint8_t button);
-    void begin(uint8_t outA, uint8_t outB, int resolution);
+    void begin(uint8_t outA, uint8_t outB, uint8_t button, int resolution);
+    void begin(uint8_t outA, uint8_t outB, uint8_t button);
     void begin(uint8_t outA, uint8_t outB);
 
     void SetResolution(int resolution);
@@ -36,6 +36,7 @@ public:
 
     int GetSteps();
     Direction GetDirection();
+    String GetDirectionName();
 
     float Percentage();
     float PercentageOfTurn();
@@ -43,30 +44,32 @@ public:
     float Degrees();
 };
 
-// Constructor with optional parameters 'resolution' (default 20) and 'button'
-void NewEncoder::begin(uint8_t outA, uint8_t outB, int resolution, uint8_t button)
+/// Constructors (various polymorphisms)
+//
+void NewEncoder::begin(uint8_t outA, uint8_t outB)
 {
     _outA = outA;
     _outB = outB;
-    _button = button;
 
-    maxResolution = resolution;
-
-    pinMode(_outA, INPUT);
-    pinMode(_outB, INPUT);
-
-    if (_button != 0)
-        pinMode(_button, INPUT_PULLUP);
+    pinMode(_outA, INPUT_PULLUP);
+    pinMode(_outB, INPUT_PULLUP);
 
     DIRECTION = None;
 }
-void NewEncoder::begin(uint8_t outA, uint8_t outB)
+void NewEncoder::begin(uint8_t outA, uint8_t outB, uint8_t button)
 {
-    begin(outA, outB, 20, 0);
+    _button = button;
+    
+    if (_button != 0)
+        pinMode(_button, INPUT_PULLUP);
+
+    begin(outA, outB);
 }
-void NewEncoder::begin(uint8_t outA, uint8_t outB, int resolution)
+void NewEncoder::begin(uint8_t outA, uint8_t outB, uint8_t button, int resolution)
 {
-    begin(outA, outB, resolution, 0);
+    maxResolution = resolution;
+
+    begin(outA, outB, button);
 }
 void NewEncoder::SetResolution(int resolution)
 {
@@ -103,6 +106,21 @@ int NewEncoder::GetSteps()
 NewEncoder::Direction NewEncoder::GetDirection()
 {
     return DIRECTION;
+}
+String NewEncoder::GetDirectionName()
+{
+    switch (DIRECTION)
+    {
+    case 0:
+        return "None";
+        break;
+    case 1:
+        return "Clockwise";
+        break;
+    case 2:
+        return "Counterclockwise";
+        break;
+    }
 }
 float NewEncoder::Percentage()
 {

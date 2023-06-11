@@ -4,8 +4,8 @@ class NewEncoder
 {
 private:
     // Pin out
-    uint8_t _outA;
-    uint8_t _outB;
+    uint8_t clkPin;
+    uint8_t dataPin;
     uint8_t _button = 0;
 
     // Encoder variables
@@ -13,8 +13,8 @@ private:
     int steps = 0;
 
     // Encoder tracking variables
-    bool aState = false;
-    bool aLastState = false;
+    bool clkState = false;
+    bool clkLastState = false;
 
     enum Direction
     {
@@ -22,14 +22,14 @@ private:
         Clockwise,
         Counterclockwise
     };
-    Direction DIRECTION;
+    Direction direction;
 
 public:
     void begin(uint8_t clk, uint8_t data, uint8_t button, int resolution);
     void begin(uint8_t clk, uint8_t data, uint8_t button);
     void begin(uint8_t clk, uint8_t data);
 
-    void Clear();
+    void Reset();
 
     void SetResolution(int resolution);
 
@@ -50,13 +50,13 @@ public:
 // Defines the pins where the CLK and DATA (or A and B) pins are connected
 void NewEncoder::begin(uint8_t clk, uint8_t data)
 {
-    _outA = clk;
-    _outB = data;
+    clkPin = clk;
+    dataPin = data;
 
-    pinMode(_outA, INPUT_PULLUP);
-    pinMode(_outB, INPUT_PULLUP);
+    pinMode(clkPin, INPUT_PULLUP);
+    pinMode(dataPin, INPUT_PULLUP);
 
-    DIRECTION = None;
+    direction = None;
 }
 // Defines the pins where the CLK and DATA (or A and B) pins are connected and also the attached switch button
 void NewEncoder::begin(uint8_t clk, uint8_t data, uint8_t button)
@@ -76,9 +76,10 @@ void NewEncoder::begin(uint8_t clk, uint8_t data, uint8_t button, int resolution
     begin(clk, data, button);
 }
 // Resets the step count of the encoder to zero
-void NewEncoder::Clear()
+void NewEncoder::Reset()
 {
     steps = 0;
+    direction = None;
 }
 // Changes the number of steps for each complete turn of the encoder to the specified number
 void NewEncoder::SetResolution(int resolution)
@@ -88,21 +89,21 @@ void NewEncoder::SetResolution(int resolution)
 // Update encoder state based on pin changes
 void NewEncoder::Update()
 {
-    aState = digitalRead(_outA);
-    if (aState != aLastState)
+    clkState = digitalRead(clkPin);
+    if (clkState != clkLastState)
     {
-        if (aState != digitalRead(_outB))
+        if (clkState != digitalRead(dataPin))
         {
             steps++;
-            DIRECTION = Clockwise;
+            direction = Clockwise;
         }
         else
         {
             steps--;
-            DIRECTION = Counterclockwise;
+            direction = Counterclockwise;
         }
     }
-    aLastState = aState;
+    clkLastState = clkState;
 }
 // Returns true if the button is currently pressed, false otherwise
 bool NewEncoder::ButtonPressed()
@@ -117,14 +118,14 @@ int NewEncoder::GetSteps()
 // Returns the direction of the last taken step
 NewEncoder::Direction NewEncoder::GetDirection()
 {
-    return DIRECTION;
+    return direction;
 }
 // Returns the name of the direction of the last step taken
 String NewEncoder::GetDirectionName()
 {
-    return (DIRECTION == None)               ? "None"
-           : (DIRECTION == Clockwise)        ? "Clockwise"
-           : (DIRECTION == Counterclockwise) ? "Counterclockwise"
+    return (direction == None)               ? "None"
+           : (direction == Clockwise)        ? "Clockwise"
+           : (direction == Counterclockwise) ? "Counterclockwise"
                                              : "Unknown";
 }
 // Get the number of complete turns made by the encoder

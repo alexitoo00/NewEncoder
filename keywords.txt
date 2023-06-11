@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+NewEncoder	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin KEYWORD2
+Reset KEYWORD2
+SetResolution KEYWORD2
+Update KEYWORD2
+ButtonPressed KEYWORD2
+GetSteps KEYWORD2
+GetDirection KEYWORD2
+GetDirectionName KEYWORD2
+Turns KEYWORD2
+PercentageOfTurn KEYWORD2
+Radians KEYWORD2
+Degrees KEYWORD2
+
+######################################
+# Constants (LITERAL1)
+#######################################

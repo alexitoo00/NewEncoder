@@ -1,4 +1,14 @@
+[![GitHub issues](https://img.shields.io/github/issues/alexitoo00/NewEncoder.svg)](https://github.com/alexitoo00/NewEncoder/issues)
+[![Fork](https://img.shields.io/github/forks/alexitoo00/NewEncoder.svg)](#)
+[![Stars](https://img.shields.io/github/stars/alexitoo00/NewEncoder.svg)](#)
+[![License](https://img.shields.io/github/license/alexitoo00/NewEncoder.svg)](#)
+[![Total Downloads](https://img.shields.io/github/downloads/alexitoo00/NewEncoder/total.svg)](https://github.com/caiofrota/cf-arduino-lib-rotary-encoder/releases)
+[![Website](https://img.shields.io/badge/alexitoo00-green.svg)](https://github.com/alexitoo00)
+
+
 # New Encoder
+
+Version 1.0.0
 
 This library is an attempt of obtaining the most properties from rotary encoders as possible. You can get the direction of the last rotation, set the number of steps per turn of your exact model of encoder and even convert the rotation into degrees or radians.
 

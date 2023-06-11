@@ -43,10 +43,10 @@ void PrintData()
     Serial.print("Direction: \t-\t");
     Serial.println(encoder.GetDirectionName());
 
-    Serial.print("Percentage: \t-\t");
-    Serial.println(encoder.Percentage(), 16);
+    Serial.print("Turns: \t-\t");
+    Serial.println(encoder.Turns(), 16);
 
-    Serial.print("Percentage of turn: \t-\t");
+    Serial.print("Turns of turn: \t-\t");
     Serial.println(encoder.PercentageOfTurn(), 16);
 
     Serial.print("Radians: \t-\t");

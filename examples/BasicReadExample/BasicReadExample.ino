@@ -43,7 +43,7 @@ void PrintData()
     Serial.print("Direction: \t-\t");
     Serial.println(encoder.GetDirectionName());
 
-    Serial.print("Turns: \t-\t");
+    Serial.print("Turns: \t\t-\t");
     Serial.println(encoder.Turns(), 16);
 
     Serial.print("Turns of turn: \t-\t");

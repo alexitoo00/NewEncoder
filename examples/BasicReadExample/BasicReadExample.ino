@@ -16,7 +16,7 @@ NewEncoder encoder; // Create an instance of the class NewEncoder
 void setup()
 {
     // pin A or CLOCK, pin B or DATA, number of steps per turn and pin of SWITCH button
-    encoder.begin(8, 9, 13, 20);
+    encoder.begin(8, 9, 13, 30);
     Serial.begin(9600);
 }
 

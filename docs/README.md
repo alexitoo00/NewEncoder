@@ -33,7 +33,7 @@ NewEncoder myEncoder;
 ```
 
 ## Circuit
-Usually, rotary encoders have **5** pins in total: **CLK** (or A pin), **DATA** (or B pin), **SW** (Switch button), **power** and **ground**. The **power** wire should be connected to the **5V** pin on the Arduino board. The **ground** is connected to any of the **ground** pins of the Arduino. The **CLK**, **DATA** and **SW** pins can be connected anywhere else in the board and we must declare which pin is connected to which encoder in the [`begin()`](#begin) function.
+Usually, rotary encoders have **5** pins in total: **CLK** (or A pin), **DATA** (or B pin), **SW** (Switch button), **power** and **ground**. The **power** wire should be connected to the **5V** pin on the Arduino board. The **ground** is connected to any of the **ground** pins of the Arduino. The **CLK**, **DATA** and **SW** pins can be connected anywhere else in the board and we must declare which pin is connected to which encoder in the [`begin()`](./FunctionExplanation.md#begin) function.
 - Schematic **(WIP)**
 ![](/img/scheme.jpg)
 

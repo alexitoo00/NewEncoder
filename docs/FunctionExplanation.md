@@ -2,7 +2,7 @@
 
 All the functions of the library briefly explained
 
-[Back](README.md)
+[Back](README.md#methods)
 
 ### begin()
 `myEnc.begin(CLK, DATA)` \

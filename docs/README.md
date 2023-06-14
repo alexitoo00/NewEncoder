@@ -8,7 +8,7 @@
 
 # New Encoder
 
-Version 1.0.2
+Version 1.0.4
 
 This library is an attempt of obtaining the most properties from rotary encoders as possible. You can get the direction of the last rotation, set the number of steps per turn of your exact model of encoder and even convert the rotation into degrees or radians.
 
@@ -17,8 +17,7 @@ This library was tested on **avr, megaavr, sam, samd, nrf52, mbed, mbed_nano, mb
 
 ## Releases
 To use this library, open the Library Manager in the Arduino IDE, type in "NewEncoder" and install it from there. More on that in the following [link](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries)
-- 1.0.2
-
+- 1.0.4
 ## Usage
 This library allows an Arduino board to read various parameters from rotary encoders. This devices use two square signals that can be translated into how much the encoder rotates. With this library you can read the rotation of each encoder as well as make usage of the integrated switch button.
 

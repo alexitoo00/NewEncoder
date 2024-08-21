@@ -71,6 +71,9 @@ You can see the list of all functions along with some information about the use 
 [Degrees()](./FunctionExplanation.md#degrees)
 
 
+## Known issues
+
+It doesn't support registers so it requires the call of the `Update()` function as often as possible. The use of async methods using `micros()` or others is recommended in long programs to secure the call to the function and don't miss updates of the encoders.
 
 ## Support or Contact
 
